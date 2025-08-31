@@ -21,23 +21,22 @@ body {
     overflow-x: hidden;
 }
 
-#animated-background {
+/* ИЗМЕНЕНО: Стили для 3D фона и обертки контента */
+#three-js-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: linear-gradient(45deg, #1a1a2e, #12121c, #1a1a2e, #3a6073);
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite;
 }
 
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+    background-color: transparent; /* Контент должен быть на прозрачном фоне */
 }
+
 
 .container {
     max-width: 960px;
@@ -53,7 +52,7 @@ h1, h2 {
 main > section {
     padding: 80px 0;
     border-bottom: 1px solid var(--border-color);
-    position: relative; /* Для анимаций */
+    position: relative;
 }
 
 section:last-of-type {
@@ -108,7 +107,7 @@ section h2::after {
     font-size: 1.4em;
     color: var(--light-color);
     font-weight: 300;
-    min-height: 25px; /* Резервируем место, чтобы текст не прыгал */
+    min-height: 25px;
 }
 
 #typewriter::after {
@@ -144,7 +143,7 @@ section h2::after {
     align-items: center;
     gap: 15px;
     transition: all 0.3s ease;
-    position: relative; /* Для подсказки */
+    position: relative;
 }
 
 .skill-card:hover {
@@ -153,7 +152,6 @@ section h2::after {
     box-shadow: 0 0 15px rgba(0, 168, 232, 0.3);
 }
 
-/* Стили для всплывающей подсказки */
 .skill-card::before {
     content: attr(data-tooltip);
     position: absolute;
@@ -180,10 +178,15 @@ section h2::after {
     font-size: 1.5em;
 }
 
-.portfolio-grid {
+.portfolio-grid, .portfolio-grid-single {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
+}
+
+.portfolio-grid-single {
+    display: flex;
+    justify-content: center;
 }
 
 .portfolio-item {
@@ -276,7 +279,6 @@ section h2::after {
 .footer-legal a { color: #777; text-decoration: none; }
 .footer-legal a:hover { color: var(--primary-color); }
 
-/* Анимация появления при прокрутке */
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
@@ -292,14 +294,12 @@ section h2::after {
     .header-text p { font-size: 1.1em; }
     section h2 { font-size: 2em; }
 }
-/* --- Стили для нового блока "Чем могу быть полезен" --- */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     text-align: center;
 }
-
 .service-card {
     background: var(--card-color);
     padding: 30px;
@@ -307,24 +307,20 @@ section h2::after {
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
 }
-
 .service-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 0 20px rgba(0, 168, 232, 0.2);
 }
-
 .service-card i {
     font-size: 3em;
     color: var(--primary-color);
     margin-bottom: 15px;
 }
-
 .service-card h3 {
     color: #fff;
     font-size: 1.4em;
     margin-bottom: 10px;
 }
-/* --- Стили для блока о готовности к сложным задачам --- */
 .challenge-box {
     margin-top: 50px;
     background: rgba(0, 168, 232, 0.1);
@@ -335,23 +331,18 @@ section h2::after {
     align-items: center;
     gap: 25px;
 }
-
 .challenge-box i {
     font-size: 3em;
     color: var(--primary-color);
 }
-
 .challenge-box h3 {
     margin-top: 0;
     color: #fff;
 }
-
-/* --- Стили для сетки с одним проектом в портфолио --- */
 .portfolio-grid-single {
     display: flex;
     justify-content: center;
 }
-
 .portfolio-grid-single .portfolio-item {
     max-width: 500px; 
     width: 100%;
