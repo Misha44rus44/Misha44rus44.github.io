@@ -51,7 +51,6 @@ h1, h2 {
 
 main > section {
     padding: 80px 0;
-    border-bottom: 1px solid var(--border-color);
     position: relative;
 }
 
@@ -254,9 +253,10 @@ section h2::after {
     transform: translateY(-5px) scale(1.05);
     box-shadow: 0 8px 25px rgba(0, 168, 232, 0.4);
 }
-
 .footer {
-    background: #11111b;
+    background: var(--card-color); /* Используем полупрозрачный фон */
+    backdrop-filter: blur(10px);   /* Добавляем эффект "матового стекла" */
+    border-top: 1px solid var(--border-color); /* Тонкая линия сверху */
     text-align: center;
     padding: 60px 0 30px;
     position: relative;
