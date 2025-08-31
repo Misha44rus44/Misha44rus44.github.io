@@ -1,0 +1,326 @@
+:root {
+    --primary-color: #00a8e8;
+    --background-color: #12121c;
+    --card-color: rgba(255, 255, 255, 0.05);
+    --text-color: #e0e0e0;
+    --header-text-color: #ffffff;
+    --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --border-color: rgba(255, 255, 255, 0.18);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+#animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(45deg, #1a1a2e, #12121c, #1a1a2e, #3a6073);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2 {
+    font-weight: 700;
+    color: var(--header-text-color);
+}
+
+main > section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border-color);
+    position: relative; /* Для анимаций */
+}
+
+section:last-of-type {
+    border-bottom: none;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.header {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 0;
+    position: relative;
+}
+
+.avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--primary-color);
+    box-shadow: 0 0 25px rgba(0, 168, 232, 0.5);
+    margin-bottom: 20px;
+}
+
+.header-text h1 {
+    margin: 0;
+    font-size: 4em;
+    font-weight: 700;
+}
+
+.header-text .subtitle {
+    margin: 5px 0 0;
+    font-size: 1.4em;
+    color: var(--light-color);
+    font-weight: 300;
+    min-height: 25px; /* Резервируем место, чтобы текст не прыгал */
+}
+
+#typewriter::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+}
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.about .container {
+    text-align: center;
+    font-size: 1.2em;
+    max-width: 800px;
+}
+
+.skills-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.skill-card {
+    background: var(--card-color);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--border-color);
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    position: relative; /* Для подсказки */
+}
+
+.skill-card:hover {
+    transform: translateY(-8px);
+    background: rgba(0, 168, 232, 0.1);
+    box-shadow: 0 0 15px rgba(0, 168, 232, 0.3);
+}
+
+/* Стили для всплывающей подсказки */
+.skill-card::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.skill-card:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.skill-card .fab, .skill-card .fas {
+    color: var(--primary-color);
+    font-size: 1.5em;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.portfolio-item {
+    background: var(--card-color);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 168, 232, 0.5);
+}
+
+.portfolio-item h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.project-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: var(--primary-color);
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    background-color: #007bff;
+    box-shadow: 0 0 15px rgba(0, 168, 232, 0.5);
+}
+
+.cta {
+    background: transparent;
+    text-align: center;
+}
+.cta-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 15px 35px;
+    font-size: 1.2em;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0, 168, 232, 0.3);
+    transition: all 0.3s ease;
+}
+.cta-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 168, 232, 0.4);
+}
+
+.footer {
+    background: #11111b;
+    text-align: center;
+    padding: 60px 0 30px;
+    position: relative;
+}
+.social-links a {
+    color: var(--light-color);
+    font-size: 2.2em;
+    margin: 0 20px;
+    transition: all 0.3s ease;
+}
+.social-links a:hover {
+    color: var(--primary-color);
+    transform: scale(1.2);
+}
+.footer-legal {
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #777;
+}
+.footer-legal a { color: #777; text-decoration: none; }
+.footer-legal a:hover { color: var(--primary-color); }
+
+/* Анимация появления при прокрутке */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .header-text h1 { font-size: 2.5em; }
+    .header-text p { font-size: 1.1em; }
+    section h2 { font-size: 2em; }
+}
+/* --- Стили для нового блока "Чем могу быть полезен" --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.service-card {
+    background: var(--card-color);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px rgba(0, 168, 232, 0.2);
+}
+
+.service-card i {
+    font-size: 3em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.service-card h3 {
+    color: #fff;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
